@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Disney Gifs!</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Rouge+Script&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Rouge+Script&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!--main container-->
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Disney</h1>
+            <br>
+            <h1 id="secondary">Gifs</h1>
+        </div>
+
+        <div class="row">
+                <!--new buttons will go here-->
+                <div id="buttonsHere"></div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <form id="inputBox">
+                        <label>Add your favorite movies!</label>
+                        <input type="text" id="newMovie">
+                        <input id="enterMovie" type="submit" value="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="gifsHere">
+            </div>
+        </div>
+
+    </div>
+  
+  
+  
+  <!--javascript link-->
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
