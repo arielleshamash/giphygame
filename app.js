@@ -1,14 +1,19 @@
 
 //movie array
-var movies = ["Lion King", "Tangled", "Snow White"];
+var movies = ["Lion King", "Tangled", "Cinderella"];
+
+var results;
 
 //adding movie array buttons
 function renderButtons() {
     $("#buttonsHere").empty();
     for (i=0; i < movies.length; i++) {
-        $("#buttonsHere").append("<button class='btn btn-outline-info' data-movie='" + movies[i] + "'>" + movies[i] + "</button>" + " ");
+        $("#buttonsHere").append("<button class='btn btn-outline-light' data-movie='" + movies[i] + "'>" + movies[i] + "</button>" + " ");
     }
-}
+    activateButton();
+
+
+  }
 
 renderButtons();
 
@@ -16,13 +21,14 @@ renderButtons();
 $("#enterMovie").on("click", function() {
     event.preventDefault();
     //taking the value from the input form
-    var movie = $("#newMovie").val();
+    var movieInput = $("#newMovie").val();
     //pushing the new value into the movie array
-    movies.push(movie);
+    movies.push(movieInput);
     renderButtons();
     return;
 });
 
+function activateButton() {
 $("button").on("click", function () {
     //storing the data-movie property from the button
     var movie = $(this).attr("data-movie");
@@ -40,7 +46,7 @@ $("button").on("click", function () {
       // After data comes back from the request
       .then(function (response) {
 
-        var results = response.data;
+        results = response.data;
         $("#movies").empty();
         // Looping through each result item
         for (var i = 0; i < results.length; i++) {
@@ -49,16 +55,32 @@ $("button").on("click", function () {
           var p = $("<p>").text("Rating: " + results[i].rating);
           var disneyPics = $("<img>");
 
-          // Setting the src attribute of the image to a property pulled off the result item
-          disneyPics.attr("src", results[i].images.fixed_height.url);
+          // Setting the attributes of the images to be still until clicked
+          disneyPics.attr("src", results[i].images.fixed_height_still.url);
           disneyPics.attr("class", "gif");
+          disneyPics.attr("random", i);
+          
+          
 
-          // Appending the paragraph and image tag to the disneyDiv
+
+          // Appending the rating and image to the disneyDiv
           disneyDiv.append(p);
           disneyDiv.append(disneyPics);
 
           // Prependng the disneyDiv to the HTML page in the "#gifsHere" div
           $("#gifsHere").prepend(disneyDiv);
         }
-  })    
+
+        $(document).on("click", ".gif", function(event) {
+          event.preventDefault();
+          var i = $(this).attr("random");
+          //disneyPics.removeAttr("src", results[i].images.fixed_height_still.url);
+          $(this).attr("src", results[i].images.fixed_height.url);
+          
+
+
+        });
+  }) 
+
   });
+}
